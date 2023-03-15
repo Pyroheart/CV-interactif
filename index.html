@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <title></title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1"/>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Athiti:wght@200;300;400;500;600;700&family=Press+Start+2P&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <link rel="stylesheet" href="css/stylesheet.css">
+        
+    </head>
+        <body>
+            <h1>CV interactif </br>made by Samuel Alleaume</h1>
+            <div class="parentDiv">
+                <div id="overlappingDiv"></div>
+                <div id="areaDiv"></div>
+                <canvas></canvas>
+
+                <div id="characterDialogueBox"></div>
+            </div>
+
+            <div id="howTo">
+                <p>click on the window to activate ambiance music</p>
+                <p>ZQSD movements</p>
+                <p>Arrows for slow movements and no interactions</p>
+                <p>E interact</p>
+            </div>
+            <div id="credits">
+                <p>credits:</p>
+                <ul>
+                    <li>My training course teacher François G.</li>
+                    <li>Chris courses taught me a lot while doing this. <a href="//www.youtube.com/@ChrisCourses">His YouTube Channel</a></li>
+                    <li>Assets from <a href="https://cypor.itch.io/12x12-rpg-tileset">Itch.io</a> but some of the tiles were made / retouched by myself</li>
+                    <li>Music made on <a href="https://typatone.com/m/BO58GNGVbT"> Typatone </a> </li>
+                </ul>
+            </div>
+
+
+            <!-- avantages pour la gestion par rapport a audio de base -->
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.3/howler.min.js" integrity="sha512-6+YN/9o9BWrk6wSfGxQGpt3EUK6XeHi6yeHV+TYD2GR0Sj/cggRpXr1BrAQf0as6XslxomMUxXp2vIl+fv0QRA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+            <!-- Animation  -->
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js" integrity="sha512-f8mwTB+Bs8a5c46DEm7HQLcJuHMBaH/UFlcgyetMqqkvTcYg4g5VXsYR71b3qC82lZytjNYvBj2pf0VekA9/FQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+            
+
+            <!-- Les scripts sont volontairement hors modules pour pouvoir y accéder sans serveur local -->
+            <script src="data/collisions.js"></script>
+            <script src="data/areasPopUp.js"></script>
+            <script src="data/collisionsHouse.js"></script>
+            <script src="data/houseEntrances.js"></script>
+            <script src="data/collisionsHouseLeaving.js"></script>
+            <script src="data/audio.js"></script>
+            <script src="data/characters.js"></script>
+            
+            <script src="js/functions/rectangluarCollisions.js"></script>
+            <script src="js/functions/checkForCharacterCollision.js"></script>
+
+            <script src="js/Classes/Sprite.js"></script>
+            <script src="js/Classes/Character.js"></script>
+            <script src="js/Classes/Boundary.js"></script>
+            <script src="js/app.js"></script>
+            <!-- <script type="module" src="js/app.js"></script> -->
+        </body>
+
+
+</html>
