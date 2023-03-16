@@ -25,6 +25,10 @@ body {
 }
 
 
+#recommended {
+	color: white;
+}
+
 body{
     text-align:center;
 	background-color: black;
@@ -36,15 +40,78 @@ h1 {
 	line-height: 1.5;
 }
 
-li {
+ul {
 	text-align: left;
 	line-height: 1.5;
+}
+li + li {
+	padding: 2rem 0;
 }
 
 #howTo, #credits {
 	color: white;
 	margin-bottom: 10rem;
 }
+
+#credits {
+	width: 50%;
+	margin-top: 10rem;
+	margin-left: auto;
+    margin-right: auto;
+}
+
+
+
+
+#howTo {
+	max-width: 50%;
+	margin-left: auto;
+    margin-right: auto;
+}
+
+#howTo img {
+	max-width: 10rem;
+	float: left;
+}
+
+#interact img {
+	width: 5rem;
+}
+
+#basics img {
+	width: 5rem;
+}
+
+.sectionTitles {
+	font-size: 2rem;
+	text-decoration: underline;
+}
+
+#movements {
+	display: flex;
+	flex-direction: column;
+	flex-wrap: wrap;
+	justify-content: left;
+}
+
+.howToInsideContainer {
+	display: flex;
+	align-items: center;
+	justify-content: left;
+  }
+
+.image {
+	padding-right: 0.5rem;
+	padding-bottom: 0.5rem;
+	max-width: 10rem;
+  }
+.text {
+	padding-left: 0
+  }
+
+
+
+
 
 
 button {

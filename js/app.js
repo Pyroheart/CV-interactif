@@ -231,7 +231,7 @@ charactersMap.forEach((row, i) => {
             hold: 60
           },
           scale: 0.75,
-          dialogue: ['Bonjour et bienvenue ! ', 'Je suis Samuel Alleaume. J\'ai 23 ans et j\'ai crée ce cv interactif dans le but de trouver une alternance. ']
+          dialogue: ['Bonjour et bienvenue ! ', 'Je suis Samuel Alleaume. J\'ai 23 ans et j\'ai crée ce cv interactif dans le but de démontrer mes compétences en Javascript, avec un peu de CSS et d\'HTML afin d\'appuyer une demande d\'alternance.']
         })
       )
     }
@@ -333,9 +333,9 @@ charactersMap.forEach((row, i) => {
             hold: 60
           },
           scale: 0.75,
-          dialogue: ['En cherchant par la suite à revenir dans le technique avec l\'informatique, j\'intègre ainsi une formation Développeur Intégrateur Web en décembre 2022 jusqu\'à mars 2023 pour la première partie à la 3W Academy.',
-                    'Le tout en vue d\'une formation Full Stack developper, spécialisation React et Node JS qui doit se faire en alternance à compter de Mars 2023',
-                    'Et c\'est sans doute à ce moment que vous pensez "mais nous sommes en Mars 2023 (ou dépassé)". Et bien oui, mais je suis tout de même inscrit dans le cursus, en attente d\'une entreprise durant 3 mois !  ']
+          dialogue: ['Formation Développeur Intégrateur Web de décembre 2022 à mars 2023 pour la première partie à la 3W Academy.',
+                    'Suivi d\'une formation Full Stack developper, spécialisation React et Node JS qui doit se faire en alternance à compter de Mars 2023.',
+                    'Et c\'est sans doute à ce moment que vous pensez "mais nous sommes en Mars 2023 (ou dépassé)". Et bien oui, mais je peux continuer à chercher 3 mois durant. ']
         })
       )
     }
@@ -369,9 +369,9 @@ charactersMap.forEach((row, i) => {
             hold: 60
           },
           scale: 0.75,
-          dialogue: ['Je peux parler anglais assez facilement du fait de ma licence (niveau attesté C1 selon l\'organisme Altissia)',
-                     'L\'espagnol est aussi envisageable avec un niveau de sortie lycée (~B1)',
-                    'Et enfin le Japonais en tant que débutant, confirmé par le Diplome universitaire de langue.']
+          dialogue: ['Je suis bilingue en anglais du fait de ma licence et d\'un niveau attesté C1 selon l\'organisme Altissia',
+                     'Je peux aussi parler espagnol avec un niveau de sortie lycée (~B1)',
+                    'Et enfin le japonais en tant que débutant, confirmé par le Diplome universitaire de langue.']
         })
       )
     }
@@ -388,9 +388,9 @@ charactersMap.forEach((row, i) => {
             hold: 60
           },
           scale: 2.3,
-          dialogue: ['Eh, psst', 
-                      'Oui, toi',
-                      'ça fait un moment que je cherche quoi faire',
+          dialogue: ['Eh, psst..', 
+                      'Oui, toi !',
+                      'ça fait un moment que je cherche quoi faire.',
                       'J\'ai entendu dire qu\'il fallait simplement traverser la route pour trouver du travail, tu le crois, toi ?']
         })
       )
@@ -509,6 +509,9 @@ const keys = {
   },
   e: {
       pressed: false
+  },
+  enter: {
+      pressed: false
   }
 };
 
@@ -543,7 +546,7 @@ function animate() {
   if (boat.calling) return;
 
   //Detection des zones de bagarre
-  if(keys.z.pressed|| keys.q.pressed || keys.d.pressed || keys.s.pressed) {
+  if(keys.z.pressed|| keys.q.pressed || keys.d.pressed || keys.s.pressed || keys.ArrowUp.pressed|| keys.ArrowLeft.pressed || keys.ArrowRight.pressed || keys.ArrowDown.pressed) {
     //detection des battleszones (en soit idem que avant)
     for (let i = 0; i < houseZones.length; i++) {
       const houseZone = houseZones[i]
@@ -557,7 +560,7 @@ function animate() {
         //mieux délimiter la zone
         && overlappingArea > (player.width * player.height) / 10
 
-        && keys.z.pressed 
+        && (keys.z.pressed || keys.ArrowUp.pressed)
       ) {
           // console.log('Housezone entry')
 
@@ -596,7 +599,7 @@ function animate() {
       }
     }
 
-    if(keys.z.pressed|| keys.q.pressed || keys.d.pressed || keys.s.pressed) {
+    if(keys.z.pressed|| keys.q.pressed || keys.d.pressed || keys.s.pressed || keys.ArrowUp.pressed|| keys.ArrowLeft.pressed || keys.ArrowRight.pressed || keys.ArrowDown.pressed) {
       //detection des battleszones (en soit idem que avant)
       for (let i = 0; i < areaZones.length; i++) {
         const areaZone = areaZones[i]
@@ -788,6 +791,11 @@ function animate() {
     } else if (keys.ArrowUp.pressed && lastKey === 'ArrowUp') { 
       player.animate = true;
       player.image = player.sprites.up;
+      checkForCharacterCollision({
+        characters,
+        player,
+        characterOffset: { x: 0, y: 3 }
+      })
         for (let i = 0; i < boundaries.length; i++) {
             const boundary = boundaries[i]
             if (
@@ -797,7 +805,7 @@ function animate() {
                   ...boundary,
                   position: {
                     x: boundary.position.x,
-                    y: boundary.position.y + 1.5
+                    y: boundary.position.y + 3
                   }
                 }
               })
@@ -809,11 +817,16 @@ function animate() {
       
           if (moving)
             movables.forEach((movable) => {
-              movable.position.y += 1.5
+              movable.position.y += 4
             })
         } else if (keys.ArrowLeft.pressed && lastKey === 'ArrowLeft') {
           player.animate = true;
           player.image = player.sprites.left;
+          checkForCharacterCollision({
+            characters,
+            player,
+            characterOffset: { x: 30, y: 0 }
+          })
             for (let i = 0; i < boundaries.length; i++) {
                 const boundary = boundaries[i]
                 if (
@@ -822,7 +835,7 @@ function animate() {
                     rectangle2: {
                       ...boundary,
                       position: {
-                        x: boundary.position.x + 1.5,
+                        x: boundary.position.x + 3,
                         y: boundary.position.y
                       }
                     }
@@ -835,11 +848,16 @@ function animate() {
           
               if (moving)
                 movables.forEach((movable) => {
-                  movable.position.x += 1.5
+                  movable.position.x += 4
                 })
             } else if (keys.ArrowRight.pressed && lastKey === 'ArrowRight') {
               player.animate = true;
               player.image = player.sprites.right;
+              checkForCharacterCollision({
+                characters,
+                player,
+                characterOffset: { x: -3, y: 0 }
+              })
                 for (let i = 0; i < boundaries.length; i++) {
                     const boundary = boundaries[i]
                     if (
@@ -848,7 +866,7 @@ function animate() {
                         rectangle2: {
                           ...boundary,
                           position: {
-                            x: boundary.position.x - 1.5,
+                            x: boundary.position.x - 3,
                             y: boundary.position.y
                           }
                         }
@@ -861,11 +879,16 @@ function animate() {
               
                   if (moving)
                     movables.forEach((movable) => {
-                      movable.position.x -= 1.5
+                      movable.position.x -= 4
                     })
                 } else if (keys.ArrowDown.pressed && lastKey === 'ArrowDown') {
                   player.animate = true;
                   player.image = player.sprites.down;
+                  checkForCharacterCollision({
+                    characters,
+                    player,
+                    characterOffset: { x: 0, y: -3 }
+                  })
                     for (let i = 0; i < boundaries.length; i++) {
                         const boundary = boundaries[i]
                         if (
@@ -875,7 +898,7 @@ function animate() {
                               ...boundary,
                               position: {
                                 x: boundary.position.x ,
-                                y: boundary.position.y - 1.5
+                                y: boundary.position.y - 3
                               }
                             }
                           })
@@ -887,7 +910,7 @@ function animate() {
                   
                       if (moving)
                         movables.forEach((movable) => {
-                          movable.position.y -= 1.5
+                          movable.position.y -= 4
                         })
 //soit bouger avec les diagonales en full if
   }
@@ -902,7 +925,7 @@ const offsetHouse = {
 }
 
 const collisionsMapHouse =[];
-//70 parce que la map en question est de 200 tiles de long
+//20 parce que la map en question est de 20 tiles de long
 for (let i = 0; i < collisionsHouse.length; i+= 20){
     //creer la map de collisions
     collisionsMapHouse.push(collisionsHouse.slice(i, 20 + i));
@@ -928,7 +951,7 @@ collisionsMapHouse.forEach((row, i) => {
 
 //boats zones
 const collisionLeavingHouseMap =[];
-//70 parce que la map en question est de 200 tiles de long
+//20 parce que la map en question est de 20 tiles de long
 for (let i = 0; i < collisionLeavingHouseData.length; i+= 20){
     //creer la map de collisions
     collisionLeavingHouseMap.push(collisionLeavingHouseData.slice(i, 20 + i));
@@ -1001,8 +1024,8 @@ function animateHouse() {
   if (houseDoor.calling) return;
 
   //Detection des zones de bagarre
-  if(keys.z.pressed|| keys.q.pressed || keys.d.pressed || keys.s.pressed) {
-    //detection des battleszones (en soit idem que avant)
+  if(keys.z.pressed|| keys.q.pressed || keys.d.pressed || keys.s.pressed || keys.ArrowUp.pressed|| keys.ArrowLeft.pressed || keys.ArrowRight.pressed || keys.ArrowDown.pressed) {
+    //detection des leavingHouse (en soit idem que avant)
     for (let i = 0; i < collisionLeavingHouse.length; i++) {
       const collisionLeavingHousee = collisionLeavingHouse[i]
       const overlappingArea = (Math.min(playerHouse.position.x + playerHouse.width, collisionLeavingHousee.position.x + collisionLeavingHousee.width) - Math.max(playerHouse.position.x, collisionLeavingHousee.position.x)) *
@@ -1014,12 +1037,10 @@ function animateHouse() {
         }) 
         //mieux délimiter la zone
         && overlappingArea > (playerHouse.width * playerHouse.height) / 10
-        //lancer la battle sur un 0.1 ou moins
-        // && Math.random()< 0.05
 
-        && keys.s.pressed 
+        && (keys.s.pressed || keys.ArrowDown.pressed)
       ) {
-          console.log('HouseDoor entry')
+          // console.log('HouseDoor entry')
           //desactiver les animations actuelles
           window.cancelAnimationFrame(animationIdHouse);
 
@@ -1072,7 +1093,7 @@ function animateHouse() {
                   ...boundary,
                   position: {
                     x: boundary.position.x,
-                    y: boundary.position.y + 1
+                    y: boundary.position.y + 5
                   }
                 }
               })
@@ -1098,7 +1119,7 @@ function animateHouse() {
                 rectangle2: {
                   ...boundary,
                   position: {
-                    x: boundary.position.x +1,
+                    x: boundary.position.x + 5,
                     y: boundary.position.y
                   }
                 }
@@ -1124,7 +1145,7 @@ function animateHouse() {
                 rectangle2: {
                   ...boundary,
                   position: {
-                    x: boundary.position.x - 1,
+                    x: boundary.position.x - 5,
                     y: boundary.position.y
                   }
                 }
@@ -1151,7 +1172,7 @@ function animateHouse() {
                   ...boundary,
                   position: {
                     x: boundary.position.x ,
-                    y: boundary.position.y - 1
+                    y: boundary.position.y - 5
                   }
                 }
               })
@@ -1165,7 +1186,114 @@ function animateHouse() {
             movablesHouse.forEach((movable) => {
               movable.position.y -= 4
             })
-  }
+  } else if (keys.ArrowUp.pressed && lastKey === 'ArrowUp') { 
+    playerHouse.animate = true;
+    playerHouse.image = playerHouse.sprites.up;
+      //detection des zones de boundaries
+      for (let i = 0; i < boundariesHouse.length; i++) {
+          const boundary = boundariesHouse[i]
+          if (
+            rectangularCollisions({
+              rectangle1: playerHouse,
+              rectangle2: {
+                ...boundary,
+                position: {
+                  x: boundary.position.x,
+                  y: boundary.position.y + 5
+                }
+              }
+            })
+          ) {
+            moving = false
+            break
+          }
+        }
+    
+        if (moving)
+          movablesHouse.forEach((movable) => {
+            movable.position.y += 4
+          })
+  // background.position.y = background.position.y += 3;}
+  } else if (keys.ArrowLeft.pressed && lastKey === 'ArrowLeft') {
+      playerHouse.animate = true;
+      playerHouse.image = playerHouse.sprites.left;
+      for (let i = 0; i < boundariesHouse.length; i++) {
+          const boundary = boundariesHouse[i]
+          if (
+            rectangularCollisions({
+              rectangle1: playerHouse,
+              rectangle2: {
+                ...boundary,
+                position: {
+                  x: boundary.position.x + 5,
+                  y: boundary.position.y
+                }
+              }
+            })
+          ) {
+            moving = false
+            break
+          }
+        }
+    
+        if (moving)
+          movablesHouse.forEach((movable) => {
+            movable.position.x += 4
+          })
+  } else if (keys.ArrowRight.pressed && lastKey === 'ArrowRight') {
+      playerHouse.animate = true;
+      playerHouse.image = playerHouse.sprites.right;
+      for (let i = 0; i < boundariesHouse.length; i++) {
+          const boundary = boundariesHouse[i]
+          if (
+            rectangularCollisions({
+              rectangle1: playerHouse,
+              rectangle2: {
+                ...boundary,
+                position: {
+                  x: boundary.position.x - 5,
+                  y: boundary.position.y
+                }
+              }
+            })
+          ) {
+            moving = false
+            break
+          }
+        }
+    
+        if (moving)
+          movablesHouse.forEach((movable) => {
+            movable.position.x -= 4
+          })
+  } else if (keys.ArrowDown.pressed && lastKey === 'ArrowDown') {
+      playerHouse.animate = true;
+      playerHouse.image = playerHouse.sprites.down;
+      for (let i = 0; i < boundariesHouse.length; i++) {
+          const boundary = boundariesHouse[i]
+          if (
+            rectangularCollisions({
+              rectangle1: playerHouse,
+              rectangle2: {
+                ...boundary,
+                position: {
+                  x: boundary.position.x ,
+                  y: boundary.position.y - 5
+                }
+              }
+            })
+          ) {
+            moving = false
+            break
+          }
+        }
+    
+        if (moving)
+          movablesHouse.forEach((movable) => {
+            movable.position.y -= 4
+          })
+}
+
 }
   // console.log('animating house')
 
@@ -1186,7 +1314,7 @@ window.addEventListener('keydown', (e) => {
       case 'e':
         player.interactionAsset.dialogueIndex++
 
-        const { dialogueIndex, dialogue } = player.interactionAsset
+        var { dialogueIndex, dialogue } = player.interactionAsset
         if (dialogueIndex <= dialogue.length - 1) {
           document.querySelector('#characterDialogueBox').innerHTML =
             player.interactionAsset.dialogue[dialogueIndex]
@@ -1198,8 +1326,24 @@ window.addEventListener('keydown', (e) => {
         player.isInteracting = false
         player.interactionAsset.dialogueIndex = 0
         document.querySelector('#characterDialogueBox').style.display = 'none'
-
         break;
+        case 'Enter':
+          player.interactionAsset.dialogueIndex++
+
+          var { dialogueIndex, dialogue } = player.interactionAsset
+          if (dialogueIndex <= dialogue.length - 1) {
+            document.querySelector('#characterDialogueBox').innerHTML =
+              player.interactionAsset.dialogue[dialogueIndex]
+              document.querySelector('#characterDialogueBox').style.display = 'flex'
+            return
+          }
+
+          // finish conversation
+          player.isInteracting = false
+          player.interactionAsset.dialogueIndex = 0
+          document.querySelector('#characterDialogueBox').style.display = 'none'
+          break;
+
     }
     return
   }
@@ -1210,15 +1354,24 @@ window.addEventListener('keydown', (e) => {
     // console.log(e);
     // console.log(e.key);
     switch (e.key) {
-      case 'e':
+        case 'e':
             if (!player.interactionAsset) return
       
             // beginning the conversation
-            const firstMessage = player.interactionAsset.dialogue[0];
+            var firstMessage = player.interactionAsset.dialogue[0];
             document.querySelector('#characterDialogueBox').innerHTML = firstMessage;
             document.querySelector('#characterDialogueBox').style.display = 'flex';
             player.isInteracting = true;
             break;
+          case 'Enter':
+              if (!player.interactionAsset) return
+        
+              // beginning the conversation
+              var firstMessage = player.interactionAsset.dialogue[0];
+              document.querySelector('#characterDialogueBox').innerHTML = firstMessage;
+              document.querySelector('#characterDialogueBox').style.display = 'flex';
+              player.isInteracting = true;
+              break;
         case 'z':
             keys.z.pressed = true;
             // console.log('devant');
@@ -1256,6 +1409,10 @@ window.addEventListener('keydown', (e) => {
             keys.e.pressed = true;
             lastKey ='e';
             break;
+        case 'Enter':
+            keys.enter.pressed = true;
+            lastKey ='Enter';
+            break;
     }
 })
 
@@ -1292,6 +1449,8 @@ window.addEventListener('keyup', (e) => {
         case 'e':
             keys.e.pressed = false;
             break;
+        case 'enter':
+            keys.enter.pressed = false;
     }
 })
 
@@ -1304,6 +1463,13 @@ addEventListener('click', () => {
   }
 })
 
+
+//prevent scrolling
+window.addEventListener("keydown", function(e) {
+  if(["Space","ArrowUp","ArrowDown","ArrowLeft","ArrowRight"].indexOf(e.code) > -1) {
+      e.preventDefault();
+  }
+}, false);
 
 //TEST
 //detecter la zone avec pop up du nom de zone 
