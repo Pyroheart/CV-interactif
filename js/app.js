@@ -335,7 +335,7 @@ charactersMap.forEach((row, i) => {
           scale: 0.75,
           dialogue: ['Formation Développeur Intégrateur Web de décembre 2022 à mars 2023 pour la première partie à la 3W Academy.',
                     'Suivi d\'une formation Full Stack developper, spécialisation React et Node JS qui doit se faire en alternance à compter de Mars 2023.',
-                    'Et c\'est sans doute à ce moment que vous pensez "mais nous sommes en Mars 2023 (ou dépassé)". Et bien oui, mais je peux continuer à chercher 3 mois durant. ']
+                    'Et je peux continuer à chercher 3 mois durant, en commençant tout de même le parcours. ']
         })
       )
     }
