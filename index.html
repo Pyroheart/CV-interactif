@@ -12,16 +12,24 @@
         
     </head>
         <body>
+
+
             <h1>interactive resume</br>made by Samuel Alleaume</h1>
             <p id="recommended">Google Chrome recommanded</p>
+
+            <!-- jeu -->
             <div class="parentDiv">
                 <div id="overlappingDiv"></div>
                 <div id="areaDiv"></div>
                 <canvas></canvas>
-
+            
                 <div id="characterDialogueBox"></div>
             </div>
 
+            <button id="enterButton">Interract</button>
+            
+
+            <!-- sous le jeu -->
             <article id="howTo">
                 <section id="basics">
                     <div class="howToInsideContainer">
@@ -32,7 +40,6 @@
                             <p>click on the window to activate ambiance music</p>
                         </div>
                     </div>
-                </section>
 
                 <section id="movements">
                     <p class="sectionTitles">How to move:</p>
@@ -46,10 +53,18 @@
                     </div>
                     <div class="howToInsideContainer">
                         <div class="image">
-                            <img src="assets/other/img_HTML/keyboard_arrow.png"alt="keyboard's arrow keys">
+                            <img src="https://i0.wp.com/www.cssscript.com/wp-content/uploads/2023/03/touch-virtual-joystick.webp?fit=776%2C611&ssl=1"alt="virtual joystick image">
                         </div>
                         <div class="text">
                             <p>Arrows also work.</p>
+                        </div>
+                    </div>
+                    <div class="howToInsideContainer">
+                        <div class="image">
+                            <img src="assets/other/img_HTML/keyboard_arrow.png"alt="keyboard's arrow keys">
+                        </div>
+                        <div class="text">
+                            <p>Joystick  available.</p>
                         </div>
                     </div>
                 </section>
@@ -83,6 +98,7 @@
                     <li>Chris courses taught me a lot while doing this. <a href="//www.youtube.com/@ChrisCourses">His YouTube Channel</a></li>
                     <li>Assets from <a href="https://cypor.itch.io/12x12-rpg-tileset">Itch.io</a> but some of the tiles were made / retouched by myself</li>
                     <li>Music made on <a href="https://typatone.com/m/BO58GNGVbT"> Typatone </a> </li>
+                    <li>Virtual joystick from <a href="https://github.com/cptx032/virtual-joystick"> Willie Lawrence </a> </li>
                 </ul>
             </section>
 
@@ -94,6 +110,9 @@
             
 
             <!-- Les scripts sont volontairement hors modules pour pouvoir y accéder sans serveur local -->
+            <script type="text/javascript" src="js/Buttons/joystick.js"></script> 
+            <script type="text/javascript" src="js/Buttons/enterButton.js"></script> 
+
             <script src="data/collisions.js"></script>
             <script src="data/areasPopUp.js"></script>
             <script src="data/collisionsHouse.js"></script>
@@ -110,6 +129,57 @@
             <script src="js/Classes/Boundary.js"></script>
             <script src="js/app.js"></script>
             <!-- <script type="module" src="js/app.js"></script> -->
+
+
+            <!-- pad by 
+            // author: Willie Lawrence
+            // contact: cptx032 arroba gmail dot com
+            // based in https://github.com/jeromeetienne/virtualjoystick.js/blob/master/virtualjoystick.js -->
+            <script type="text/javascript">
+                window.addEventListener("load", function(){
+                var joystick = new JoyStick({
+                    radius: 80,
+                    x: window.innerWidth / 10,
+                    y: window.innerHeight / 1.4,
+                    inner_radius: 70
+                });
+                
+                const Zup = new KeyboardEvent('keydown', { key: 'z' });
+                const Sdown = new KeyboardEvent('keydown', { key: 's' });
+                const Qleft = new KeyboardEvent('keydown', { key: 'q' });
+                const Dright = new KeyboardEvent('keydown', { key: 'd' });
+                const NkeyZ = new KeyboardEvent('keyup', { key: 'z' });
+                const NkeyS = new KeyboardEvent('keyup', { key: 's' });
+                const NkeyQ = new KeyboardEvent('keyup', { key: 'q' });
+                const NkeyD = new KeyboardEvent('keyup', { key: 'd' });
+
+                let joystickUsed = false;
+
+                function run_all_time(){
+                    if ( joystick.up ) window.dispatchEvent(Zup), joystickUsed = true;
+                    if ( joystick.down ) window.dispatchEvent(Sdown), joystickUsed = true;
+                    if ( joystick.left ) window.dispatchEvent(Qleft), joystickUsed = true;
+                    if ( joystick.right ) window.dispatchEvent(Dright), joystickUsed = true;
+                    if (!joystick.right && !joystick.left && !joystick.up && !joystick.down && joystickUsed === true) window.dispatchEvent(NkeyZ), window.dispatchEvent(NkeyS), window.dispatchEvent(NkeyQ), window.dispatchEvent(NkeyD), joystickUsed = false;
+
+                    requestAnimationFrame( run_all_time );
+                }
+                run_all_time();
+                
+
+                
+            });
+
+            // const buttonEnter = document.getElementById('EnterButton');
+
+            // const Eup = new KeyboardEvent('keydown', { key: 'e' });
+            // const NkeyE = new KeyboardEvent('keyup', { key: 'e' });
+
+            // buttonEnter.addEventListener('click', function() {
+            //     console.log('e');
+
+            // });   
+            </script>
         </body>
 
 

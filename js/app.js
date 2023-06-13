@@ -18,6 +18,7 @@ canvas.height = 576;
 // context.fillRect(0, 0, canvas.width, canvas.height);
 
 
+
 //offSet générée par le background position de base à combler
 const offset = {
   x: -2250,
@@ -652,7 +653,7 @@ function animate() {
     //zqsd
     // let moving = true;
     // player.animate = false;
-    if (keys.z.pressed && lastKey === 'z') { 
+    if ((keys.z.pressed && lastKey === 'z')) { 
       player.animate = true;
       player.image = player.sprites.up;
 
