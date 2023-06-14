@@ -336,7 +336,7 @@ charactersMap.forEach((row, i) => {
           scale: 0.75,
           dialogue: ['Formation Développeur Intégrateur Web de décembre 2022 à mars 2023 pour la première partie à la 3W Academy.',
                     'Suivi d\'une formation Full Stack developper, spécialisation React et Node JS qui doit se faire en alternance à compter de Mars 2023.',
-                    'Et je peux continuer à chercher 3 mois durant, en commençant tout de même le parcours. ']
+                    'N\ayant pas trouvé d\alternance ceci n\a pas donné de suite. Mais je cherche tout de même à me lancer.']
         })
       )
     }
@@ -410,7 +410,7 @@ charactersMap.forEach((row, i) => {
           },
           scale: 0.75,
           dialogue: ['Ceci est la fin de cette petite aventure, merci d\'avoir joué le jeu jusqu\'au bout.', 
-                    'Si jamais cette expérience vous aurait donné envie de me contacter, vous pouvez me joindre ici : <a href ="mailto:samuel@alleaume.eu">samuel@alleaume.eu</a>.',
+                    'Si jamais cette expérience vous a donné envie de me contacter, vous pouvez me joindre ici : <a href ="mailto:samuel@alleaume.eu">samuel@alleaume.eu</a>.',
                     'Des aides sont aussi à pourvoir dans le cas d\'un recrutement par alternance.', 
                     'J\'espère que vous avez passé un bon moment, et je vous souhaite une bonne journée !']
         })
