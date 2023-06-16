@@ -18,6 +18,7 @@ CONTAINER
 
 html {
 	font-size: 62.5%; /* 1rem = 10px (la formule est 10/16*100) la taille par défaut étant 16px */
+	min-width: 1000px;
 }
 
 body {
@@ -178,12 +179,51 @@ button:hover {
 
 
 
+
+
+#rightPad {
+	position: relative;
+
+}
+
 #enterButton {
 	position: absolute;
+	padding: 2rem;
+	color: rgba(255,255,255,1);
+	background-color: rgba(255,255,255,0.1);
+	bottom: 115px;
+	left: 80%
+}
+
+
+
+#directionalPad {
+	position: absolute;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	height: 200px;
+	overflow: hidden;
+	top: 60%;
+	left: 5%;
+  }
+  
+  .row {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+  }
+  
+  .button {
+	height: 50px;
+	border-radius: 50%;
 	padding: 2rem;
 	z-index: 10001;
 	color: rgba(255,255,255,1);
 	background-color: rgba(255,255,255,0.1);
-	top: 80%;
-	right: 5%;
-}
+  }
+  
+  /* .center {
+	background-color:rgba(255,255,255,0);
+  } */
