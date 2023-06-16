@@ -336,7 +336,7 @@ charactersMap.forEach((row, i) => {
           scale: 0.75,
           dialogue: ['Formation Développeur Intégrateur Web de décembre 2022 à mars 2023 pour la première partie à la 3W Academy.',
                     'Suivi d\'une formation Full Stack developper, spécialisation React et Node JS qui doit se faire en alternance à compter de Mars 2023.',
-                    'N\ayant pas trouvé d\alternance ceci n\a pas donné de suite. Mais je cherche tout de même à me lancer.']
+                    'N\'ayant pas trouvé d\'alternance ceci n\'a pas donné de suite. Mais je cherche tout de même à me lancer.']
         })
       )
     }
